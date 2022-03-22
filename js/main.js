@@ -3,6 +3,25 @@ let navbar = document.querySelector(".navbar")
 let search = document.querySelector("#search-icon")
 let section = document.querySelectorAll("section")
 let navLink = document.querySelectorAll("header .navbar a")
+let suggest_item = document.querySelector(".suggest_today_item")
+let suggest_lisst = document.querySelector(".list_suggest_today")
+let btn_oder_now = document.querySelectorAll(".home-slider .btn")
+
+
+
+/* btn_oder_now.onclick = ()=>{
+    console.log('123456')
+    let a = document.querySelector(".content h3").textContent;
+    console.log(a)
+} */
+let name_food ='';
+btn_oder_now.forEach(e=>{
+    e.onclick = ()=>{
+        name_food = document.querySelector(".content h3").textContent;
+    }
+  
+})
+console.log(name_food);
 
 
 menu.onclick = () => {
@@ -76,15 +95,28 @@ var swiper = new Swiper(".review-slider", {
     },
 
 });
+/* ---------------------------jquery------------------ */
 
+$(document).ready(function(){
+    $('.home-slider .content .btn').click(function(){
+        var name_food = $(this).prev().prev().text();
+        $('#yourOrder').val(name_food);
+    });
+})
 
+$(document).ready(function(){
+    $('#order .btn').click(function(){
+        alert('Oder thành công!');
+    });
+})
 
 /* -----------loader--------- */
-function loader(){
+/* function loader(){
     document.querySelector('.loader-container').classList.add('fade-out');
 }
 function FadeOut(){
     setInterval(loader,3000);
-}
+}A
 
 window.onload = FadeOut();
+ */
