@@ -602,6 +602,11 @@ section:nth-child(even)
     margin-top: 0px;
 }
 
+.invalid
+{
+    border: .1rem solid red;
+}
+
 /* -------------------footer------------------ */
 
 .footer .box-container
