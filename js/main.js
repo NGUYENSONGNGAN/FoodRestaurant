@@ -155,17 +155,17 @@ Validator.isrequired = function (selector) {
     return {
         selector: selector,
         test: function (value) {
-            return value.trim() ? undefined : 'vui lòng nhập trường này'
+            return value.trim() ? undefined : 'Vui lòng nhập trường này'
 
         }
     }
 }
-Validator.isEmail = function (selector) {
+Validator.isNumber = function (selector) {
     return {
         selector: selector,
         test: function (value) {
-            var regex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-            return regex.test(value) ? undefined : 'vui lòng nhập đúng định dạng email'
+            var regex = [0-9];
+            return regex.test(value) ? undefined : 'vui lòng nhập số'
 
         }
     }
@@ -176,6 +176,9 @@ Validator({
     form: '#form_orderNow',
     rules: [
         Validator.isrequired("#yourName"),
-        Validator.isEmail("#yourOrder")
+        Validator.isrequired("#yourNumber"),
+        Validator.isrequired("#yourAddress"),
+        Validator.isrequired("#howMuch"),
+        Validator.isrequired("#yourOrder")
     ]
 })
