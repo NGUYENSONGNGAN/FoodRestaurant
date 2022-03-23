@@ -41,7 +41,7 @@ window.onscroll = () => {
         if (top >= offset && top < offset + height) {
             navLink.forEach(navLinks => {
                 navLinks.classList.remove('active')
-                document.querySelector("header .navbar a[href*=" + id + "]").classList.add('active');
+                // document.querySelector("header .navbar a[href*=" + id + "]").classList.add('active');
 
             });
         };
@@ -97,14 +97,32 @@ var swiper = new Swiper(".review-slider", {
 $(document).ready(function () {
     $('.home-slider .content .btn').click(function () {
         var name_food = $(this).prev().prev().text();
+        var spice_food = $(this).next().text();
         $('#yourOrder').val(name_food);
+        $('#howMuch').val(spice_food);
     });
 })
 
 $(document).ready(function () {
     $('#order .btn').click(function () {
-        alert('Oder thành công!');
+        var name_food_confirm = $('#yourName').val();
+        var your_number_confirm = $('#yourNumber').val();
+        var your_order_confirm = $('#yourOrder').val();
+        var addtionalFoot_confirm = $('#addtionalFood').val();
+        var howMuch_confirm = $('#howMuch').val();
+        var your_Adress_confirm = $('#yourAddress').val();
+        console.log(name_food_confirm);
+        $('.name_yourname').text(name_food_confirm);
+        $('.name_phoneNumber').text(your_number_confirm);
+        $('.your_order_confirm').text(your_order_confirm);
+        $('.addtionalFoot_confirm').text(addtionalFoot_confirm);
+        $('.howMuch_confirm').text(howMuch_confirm);
+        $('.your_Adress_confirm').text(your_Adress_confirm);
+        $('.modal').addClass("display_block");
     });
+    $('.modal-content .fa-xmark').click(function(){
+        $('.modal').remove("display_block");
+    })
 })
 
 /* -----------loader--------- */
@@ -117,6 +135,7 @@ function FadeOut(){
 
 window.onload = FadeOut();
  */
+
 
 function Validator(options) {
     var formElement = document.querySelector(options.form)
@@ -164,7 +183,7 @@ Validator.isNumber = function (selector) {
     return {
         selector: selector,
         test: function (value) {
-            var regex = [0-9];
+            var regex = /^(0?)(3[2-9]|5[6|8|9]|7[0|6-9]|8[0-6|8|9]|9[0-4|6-9])[0-9]{7}$/;
             return regex.test(value) ? undefined : 'vui lòng nhập số'
 
         }

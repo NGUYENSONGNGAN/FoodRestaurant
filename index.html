@@ -54,6 +54,7 @@
                         <h3>spicy noodles</h3>
                         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea quam dolores possimus.</p>
                         <a href="#order" class="btn">order now</a>
+                        <span class="spice">20.5</span>
                     </div>
                     <div class="image">
                         <img src="image/home-img-1.png" alt="">
@@ -66,6 +67,7 @@
                         <h3>fried chicken</h3>
                         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea quam dolores possimus.</p>
                         <a href="#order" class="btn">order now</a>
+                        <span class="spice">36.2</span>
                     </div>
                     <div class="image">
                         <img src="image/home-img-2.png" alt="">
@@ -78,6 +80,7 @@
                         <h3>hot pizza</h3>
                         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea quam dolores possimus.</p>
                         <a href="#order" class="btn">order now</a>
+                        <span class="spice">19.2</span>
                     </div>
                     <div class="image">
                         <img src="image/home-img-3.png" alt="">
@@ -189,12 +192,12 @@
                 </div>
                 <span class="price">
                     <i class="fa-solid fa-dollar-sign"></i>
-                    15.999
+                    15.99
                 </span>
                 <a href="#" class="btn">add to cart</a>
 
             </div>
-            <!--  -->
+            <!---->
             <div class="box">
                 <img src="image/dish-6.png" alt="">
                 <i class="fa-solid fa-heart"></i>
@@ -559,27 +562,61 @@
                     <span class="form-message"></span>
                 </div>
                 <div class="input">
-                    <label for="yourDate">Date and time</label>
-                    <input type="datetime-local" id="yourDate">
-                    <span class="form-message"></span>
-                </div>
-            </div>
-
-            <div class="inputBox">
-                <div class="input">
                     <label for="yourAddress">your address</label>
                     <textarea id="yourAddress" placeholder="enter your address" cols="30" rows="10"></textarea>
                     <span class="form-message"></span>
                 </div>
-                <div class="input">
-                    <label for="yourMessage">your message</label>
-                    <textarea id="yourMessage" placeholder="enter your message" cols="30" rows="10"></textarea>
-                    <span class="form-message"></span>
-                </div>
+
             </div>
             <div class="btn">Oder Now</div>
         </form>
+
+        <!--------------modal oder done--------------->
+        <div id="myModal" class="modal">
+
+            <!-- Modal content -->
+            <div class="modal-content">
+
+                <i class="fa-solid fa-xmark"></i>
+
+                <h4 class="title_oder">Your Oder</h4>
+                <div class="message_oder">
+                    <i class="fa-solid fa-check"></i>
+                    <p>Oder success !</p>
+                </div>
+                <div class="Your_imformation">
+                    <span>Name : </span>
+                    <span class="name_yourname"></span>
+                </div>
+                <div class="Your_imformation">
+                    <span>Your number: </span>
+                    <span class="name_phoneNumber"></span>
+                </div>
+                <div class="Your_imformation">
+                    <span>Your Address : </span>
+                    <span class="name_adress"></span>
+                </div>
+                <div class="Your_imformation">
+                    <span>Your Oder : </span>
+                    <span class="name_yourOder"></span>
+                </div>
+                <div class="Your_imformation">
+                    <span> Amount : </span>
+                    <span class="name_amount"></span>
+                </div>
+                <div class="Your_imformation">
+                    <span> How much : </span>
+                    <span class="name_howMuch"></span>
+                </div>
+                <hr>
+                <div class="foot_modal">
+                    <p>Cảm ơn quý khách hẹn gặp lại !</p>
+                </div>
+            </div>
+
+        </div>
     </section>
+
 
     <section class="footer" id="footer">
         <div class="box-container">
@@ -624,7 +661,7 @@
     </div> -->
     <!-- js file link -->
     <script src="https://unpkg.com/swiper@8/swiper-bundle.min.js"></script>
-    
+
     <script src="js/jquery.js"></script>
     <script src="js/main.js"></script>
 </body>
