@@ -74,6 +74,23 @@ header .icons a
     text-align: center;
     font-size: 1.7rem;
 }
+header .icons a.fa-cart-shopping
+{
+    display: inline-block;
+    position: relative;
+}
+header .icons a.fa-cart-shopping span
+{
+    position:absolute;
+    z-index: 1;
+    border-radius: 50%;
+    font-size:12px;
+    background:var(--green);
+    padding:1px 5px;
+    line-height:15px;
+    color:#fff;
+    font-weight: 500;
+}
 header .icons i:hover ,
 header .icons a:hover
 {
@@ -707,6 +724,49 @@ section:nth-child(even)
 {
     text-transform: none;
     line-height: 25px;
+}
+
+.inputBox .input .price_oder_now
+{
+    display: flex;
+    color : var(--light-color);
+    background: #eee;
+    border-radius: .5rem;
+    padding: 1rem;
+    font-size: 1.6rem;
+    text-transform: none;
+}
+.inputBox .input .price_oder_now p
+{
+    padding-left: 15px;
+}
+.inputBox .input p#yourOrder
+{
+    color:var(--light-color);
+    display: block;
+    background: #eee;
+    border-radius: .5rem;
+    padding: 1rem;
+    font-size: 1.6rem;
+    text-transform: none;
+    
+}
+.input #amount
+{
+    display: block;
+}
+.input #amount select
+{
+    
+    font-size: 1.4rem;
+    text-align:center;
+    background:#eee;
+    border-radius:.5rem;
+    padding: 1rem 2rem;
+}
+.input #amount select option
+{
+    text-align:center;
 }
 /* -------------------footer------------------ */
 

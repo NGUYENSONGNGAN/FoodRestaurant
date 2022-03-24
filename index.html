@@ -29,8 +29,8 @@
             <i class="fa-solid fa-bars" id="menubars"></i>
             <i class="fa-solid fa-magnifying-glass" id="search-icon"></i>
             <a href="#" class="fa-solid fa-heart"></a>
-            <a href="#" class="fa-solid fa-cart-shopping"></a>
-
+            <a href="#" class="fa-solid fa-cart-shopping"> <span id="amount_product_cart">0</span></a>
+           
         </div>
     </header>
     <!-- end header -->
@@ -545,12 +545,31 @@
             <div class="inputBox">
                 <div class="input">
                     <label for="yourOrder">your order</label>
-                    <input type="text" name="yourOrder" id="yourOrder" placeholder="enter your order">
+                    <p id="yourOrder">your order</p>
                     <span class="form-message"></span>
                 </div>
                 <div class="input">
-                    <label for="addtionalFood">Additional Food</label>
-                    <input type="text" name="your" id="addtionalFood" placeholder="extra with food">
+                    <label for="amount">Amount</label>
+                    <div id="amount">
+                        <select>
+                            
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                            <option value="10">10</option>
+                            <option value="11">11</option>
+                            <option value="12">12</option>
+                            <option value="13">13</option>
+                            <option value="14">14</option>
+                            <option value="15">15</option>
+                        </select>
+                    </div>
                     <span class="form-message"></span>
                 </div>
             </div>
@@ -558,7 +577,13 @@
             <div class="inputBox">
                 <div class="input">
                     <label for="howMuch">how much</label>
-                    <input type="text" name="howMuch" id="howMuch" placeholder="how many orders">
+                   
+                    <span class="price_oder_now">
+                        <i class="fa-solid fa-dollar-sign"></i>
+                        <p id="howMuch"></p>
+                        
+                       
+                    </span>
                     <span class="form-message"></span>
                 </div>
                 <div class="input">

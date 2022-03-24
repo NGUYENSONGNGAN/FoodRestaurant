@@ -21,7 +21,6 @@ btn_oder_now.forEach(e => {
     }
 
 })
-console.log(name_food);
 
 
 menu.onclick = () => {
@@ -41,7 +40,7 @@ window.onscroll = () => {
         if (top >= offset && top < offset + height) {
             navLink.forEach(navLinks => {
                 navLinks.classList.remove('active')
-                // document.querySelector("header .navbar a[href*=" + id + "]").classList.add('active');
+                document.querySelector("header .navbar a[href*=" + id + "]").classList.add('active');
 
             });
         };
@@ -98,31 +97,94 @@ $(document).ready(function () {
     $('.home-slider .content .btn').click(function () {
         var name_food = $(this).prev().prev().text();
         var spice_food = $(this).next().text();
-        $('#yourOrder').val(name_food);
-        $('#howMuch').val(spice_food);
+        $('#yourOrder').text(name_food);
+        $('#howMuch').text(spice_food);
     });
 })
 
 $(document).ready(function () {
+    var name_food_confirm = $('#yourName').val();
+    var your_number_confirm = $('#yourNumber').val();
+    var your_order_confirm = $('#yourOrder').text();
+    var howMuch_confirm = $('#howMuch').text();
+    /* var addtionalFoot_confirm =document.getElementById("#amount").value()
+    console.log(addtionalFoot_confirm); */
+  
+     var addtionalFoot_confirm = document.querySelector('#amount select');
+     var howMuch_new =1;
+     addtionalFoot_confirm.onchange = function(e){
+         
+         howMuch_new = howMuch_confirm *(e.target.value);
+         console.log(howMuch_new)
+         document.querySelector("#howMuch").innerText =howMuch_new;
+    }
+
+   /*  var evvv = document.getElementById("#amount")
+    var addtionalFoot_confirm = e.options[e.selectedIndex].text;
+    */ 
+    
+    
+    
+    
+    
+    var your_Adress_confirm = $('#yourAddress').val();
+    var test_confirm = document.querySelectorAll('.invalid');
+    
     $('#order .btn').click(function () {
-        var name_food_confirm = $('#yourName').val();
-        var your_number_confirm = $('#yourNumber').val();
-        var your_order_confirm = $('#yourOrder').val();
-        var addtionalFoot_confirm = $('#addtionalFood').val();
-        var howMuch_confirm = $('#howMuch').val();
-        var your_Adress_confirm = $('#yourAddress').val();
-        console.log(name_food_confirm);
-        $('.name_yourname').text(name_food_confirm);
-        $('.name_phoneNumber').text(your_number_confirm);
-        $('.your_order_confirm').text(your_order_confirm);
-        $('.addtionalFoot_confirm').text(addtionalFoot_confirm);
-        $('.howMuch_confirm').text(howMuch_confirm);
-        $('.your_Adress_confirm').text(your_Adress_confirm);
-        $('.modal').addClass("display_block");
+      
+        if (test_confirm.length == 0) {
+            if (name_food_confirm != '' && your_number_confirm != '') {
+                $('.name_yourname').text(name_food_confirm);
+                $('.name_phoneNumber').text(your_number_confirm);
+                $('.name_yourOder').text(your_order_confirm);
+                $('.name_amount').text(addtionalFoot_confirm);
+                $('.name_howMuch').text(howMuch_new);
+                $('.name_adress').text(your_Adress_confirm);
+                $('.modal').addClass("display_block");
+            }
+            else alert("Vui lòng điền đầy đủ thông tin !")
+        }
+        else {
+            alert('Please enter')
+
+        }
+
+
+
+
+        /*  */
+        /*  if (name_food_confirm !=''&&Number().isInteger(your_number_confirm))
+         {
+         else
+         {
+             alert('dsfđ');
+         } */
+
+        /*  */
+        /*  var testmessage = document.querySelectorAll('.form-message')
+        
+         var result_testmessage = testmessage.every(function() {
+             return e.innerText!=null;
+         });
+         console.log(result_testmessage);
+         if(!result_testmessage)
+         { 
+             
+         }
+     */
     });
-    $('.modal-content .fa-xmark').click(function(){
-        $('.modal').remove("display_block");
+})
+$(document).ready(function () {
+    $('.modal-content .fa-xmark').click(function () {
+        $('.modal').removeClass("display_block");
     })
+})
+var indext_of=0;
+$(document).ready(function () {
+    $('#menu .btn').click(function () {
+        indext_of = indext_of+1;
+        $('#amount_product_cart').text(indext_of);
+    });
 })
 
 /* -----------loader--------- */
@@ -158,8 +220,8 @@ function Validator(options) {
                     }
                 }
                 inputElement.oninput = function () {
-                   /* 
-                     */
+                    /* 
+                      */
                     errorElement.innerText = '';
                     inputElement.classList.remove('invalid')
                 }
@@ -195,9 +257,7 @@ Validator({
     form: '#form_orderNow',
     rules: [
         Validator.isrequired("#yourName"),
-        Validator.isrequired("#yourNumber"),
+        Validator.isNumber("#yourNumber"),
         Validator.isrequired("#yourAddress"),
-        Validator.isrequired("#howMuch"),
-        Validator.isrequired("#yourOrder")
     ]
 })
