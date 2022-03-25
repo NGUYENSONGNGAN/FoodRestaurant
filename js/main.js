@@ -92,53 +92,56 @@ var swiper = new Swiper(".review-slider", {
 
 });
 /* ---------------------------jquery------------------ */
-
+var spice_food;
 $(document).ready(function () {
+
     $('.home-slider .content .btn').click(function () {
         var name_food = $(this).prev().prev().text();
-        var spice_food = $(this).next().text();
+        spice_food = $(this).next().text();
         $('#yourOrder').text(name_food);
         $('#howMuch').text(spice_food);
+        $('html, body').animate({
+            scrollTop: $("#order").offset().top
+        }, );
+        $("#home .content a").attr('href', '#order?name=\'spicy noodles\'&?price=\'20.5')
     });
+
+    var addtionalFoot_confirm = document.querySelector('#amount select');
+    var howMuch_new =1;
+    addtionalFoot_confirm.onchange = function(e){/* 
+       var howMuch_confirm = $('#howMuch').text(); */
+        howMuch_new = spice_food *(e.target.value);
+/*         console.log(howMuch_new) */
+        document.querySelector("#howMuch").innerText =howMuch_new;
+   }
 })
 
 $(document).ready(function () {
-    var name_food_confirm = $('#yourName').val();
-    var your_number_confirm = $('#yourNumber').val();
-    var your_order_confirm = $('#yourOrder').text();
-    var howMuch_confirm = $('#howMuch').text();
-    /* var addtionalFoot_confirm =document.getElementById("#amount").value()
-    console.log(addtionalFoot_confirm); */
   
-     var addtionalFoot_confirm = document.querySelector('#amount select');
-     var howMuch_new =1;
-     addtionalFoot_confirm.onchange = function(e){
-         
-         howMuch_new = howMuch_confirm *(e.target.value);
-         console.log(howMuch_new)
-         document.querySelector("#howMuch").innerText =howMuch_new;
-    }
+
+  
 
    /*  var evvv = document.getElementById("#amount")
     var addtionalFoot_confirm = e.options[e.selectedIndex].text;
     */ 
-    
-    
-    
-    
-    
-    var your_Adress_confirm = $('#yourAddress').val();
-    var test_confirm = document.querySelectorAll('.invalid');
-    
+  
     $('#order .btn').click(function () {
-      
+        /* 
+         */
+        var addtionalFoot_confirm = document.getElementById('amountvalue').value
+        var name_food_confirm = $('#yourName').val();
+        var your_number_confirm = $('#yourNumber').val();
+        var your_order_confirm = $('#yourOrder').text();
+        var your_Adress_confirm = $('#yourAddress').val();
+        var howMuch_confirm = $('#howMuch').text();
+        var test_confirm = document.querySelectorAll('.invalid');
         if (test_confirm.length == 0) {
             if (name_food_confirm != '' && your_number_confirm != '') {
                 $('.name_yourname').text(name_food_confirm);
                 $('.name_phoneNumber').text(your_number_confirm);
                 $('.name_yourOder').text(your_order_confirm);
                 $('.name_amount').text(addtionalFoot_confirm);
-                $('.name_howMuch').text(howMuch_new);
+                $('.name_howMuch').text(howMuch_confirm);
                 $('.name_adress').text(your_Adress_confirm);
                 $('.modal').addClass("display_block");
             }
