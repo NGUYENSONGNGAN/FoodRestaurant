@@ -95,36 +95,53 @@ var swiper = new Swiper(".review-slider", {
 var spice_food;
 $(document).ready(function () {
 
-    $('.home-slider .content .btn').click(function () {
+    $('.home-slider .content .btn').click(function (e) {
+        e.preventDefault();
         var name_food = $(this).prev().prev().text();
         spice_food = $(this).next().text();
         $('#yourOrder').text(name_food);
         $('#howMuch').text(spice_food);
         $('html, body').animate({
             scrollTop: $("#order").offset().top
-        }, );
-        $("#home .content a").attr('href', '#order?name=\'spicy noodles\'&?price=\'20.5')
-    });
+        });
 
+
+        // console.log(getParameter('name'))
+        /* $("#home .content a").attr('href', '#order?name=\'spicy noodles\'&?price=\'20.5') */
+    });
+    let paramsUrl = window.location.search
+    let params = new URLSearchParams(paramsUrl);
+    document.querySelector("#yourOrder").innerText = params.get('name');
+    document.querySelector("#howMuch").innerText = params.get('price');
     var addtionalFoot_confirm = document.querySelector('#amount select');
-    var howMuch_new =1;
-    addtionalFoot_confirm.onchange = function(e){/* 
+    var howMuch_new = 1;
+    addtionalFoot_confirm.onchange = function (e) {/* 
        var howMuch_confirm = $('#howMuch').text(); */
-        howMuch_new = spice_food *(e.target.value);
-/*         console.log(howMuch_new) */
-        document.querySelector("#howMuch").innerText =howMuch_new;
-   }
+        howMuch_new = spice_food * (e.target.value);
+        /*         console.log(howMuch_new) */
+        document.querySelector("#howMuch").innerText = howMuch_new;
+    }
 })
+/* function getParameter(parameterName) {
+    let parameter = new URLSearchParams(window.location.search);
+    console.log(parameter)
+    return parameter.get(parameterName)
+} */
+
+/*
+        let params = new URLSearchParams(paramsUrl);
+        
+ */
 
 $(document).ready(function () {
-  
 
-  
 
-   /*  var evvv = document.getElementById("#amount")
-    var addtionalFoot_confirm = e.options[e.selectedIndex].text;
-    */ 
-  
+
+
+    /*  var evvv = document.getElementById("#amount")
+     var addtionalFoot_confirm = e.options[e.selectedIndex].text;
+     */
+
     $('#order .btn').click(function () {
         /* 
          */
@@ -182,10 +199,10 @@ $(document).ready(function () {
         $('.modal').removeClass("display_block");
     })
 })
-var indext_of=0;
+var indext_of = 0;
 $(document).ready(function () {
     $('#menu .btn').click(function () {
-        indext_of = indext_of+1;
+        indext_of = indext_of + 1;
         $('#amount_product_cart').text(indext_of);
     });
 })
