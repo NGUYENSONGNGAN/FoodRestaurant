@@ -729,6 +729,54 @@ section:nth-child(even)
     text-transform: none;
     line-height: 25px;
 }
+/* --------------error---------------- */
+.order #error
+{
+    
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    z-index: 200000; /* Sit on top */
+    left: 0;
+    top: 0;
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0,0.4);
+    display: flex; 
+    justify-content: center;
+    display:none;
+
+}
+.order #error .error_container
+{
+    width: 30%;
+    background: #eee;
+    position: relative;
+    font-size: 14px;
+    border-radius: 15px;
+    padding: 10px;
+    max-height: 120px;
+    margin-top: 15px;
+    text-align: center;
+    position: relative;
+}
+.order #error .error_container p{
+    line-height:25px;
+    font-size:17px;
+    padding: 10px;
+    text-transform: none;
+    color:var(--black);
+}
+.order #error .error_container .btn_confirm
+{
+    line-height:25px;
+    font-size:17px;
+    padding: 10px 30px;
+    border-radius:10px;
+    background-color:var(--green);
+    display: inline-block;
+}
+
 
 .inputBox .input .price_oder_now
 {
@@ -934,3 +982,40 @@ section:nth-child(even)
     }
 
 }
+
+
+
+/* -------------section cart -------------- */
+ .cart
+ {
+     width:50%;
+     margin:auto;
+     text-align:center;
+     padding-top:30px;
+ }
+ .cart h2
+ {
+     margin-bottom:20px;
+ }
+
+ .cart table
+ {
+     width:100%;
+ }
+ .cart table thead th:first-child
+ {
+     text-align:left;
+ }
+ .cart table tr td
+ {
+    border-bottom: 1px solid var(--black);
+    padding:12px 0;
+ }
+ .cart table thead th:last-child
+ {
+     text-align:right;
+ }
+ .cart table tbody tr td:last-child
+ {
+     text-align:right;
+ }

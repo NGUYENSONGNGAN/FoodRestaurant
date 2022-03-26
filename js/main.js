@@ -95,29 +95,33 @@ var swiper = new Swiper(".review-slider", {
 var spice_food;
 $(document).ready(function () {
 
-    $('.home-slider .content .btn').click(function (e) {
-        e.preventDefault();
+    $('.home-slider .content .btn').click(function () {
+        //e.preventDefault();
         var name_food = $(this).prev().prev().text();
         spice_food = $(this).next().text();
         $('#yourOrder').text(name_food);
         $('#howMuch').text(spice_food);
-        $('html, body').animate({
-            scrollTop: $("#order").offset().top
-        });
-
+     
 
         // console.log(getParameter('name'))
         /* $("#home .content a").attr('href', '#order?name=\'spicy noodles\'&?price=\'20.5') */
     });
     let paramsUrl = window.location.search
     let params = new URLSearchParams(paramsUrl);
+    if(params.get('name')||params.get('price'))
+    {
+        $('html, body').animate(
+        {
+            scrollTop: $("#order").offset().top
+        })
+    }
     document.querySelector("#yourOrder").innerText = params.get('name');
     document.querySelector("#howMuch").innerText = params.get('price');
     var addtionalFoot_confirm = document.querySelector('#amount select');
     var howMuch_new = 1;
     addtionalFoot_confirm.onchange = function (e) {/* 
        var howMuch_confirm = $('#howMuch').text(); */
-        howMuch_new = spice_food * (e.target.value);
+        howMuch_new =  params.get('price') * (e.target.value);
         /*         console.log(howMuch_new) */
         document.querySelector("#howMuch").innerText = howMuch_new;
     }
@@ -162,10 +166,12 @@ $(document).ready(function () {
                 $('.name_adress').text(your_Adress_confirm);
                 $('.modal').addClass("display_block");
             }
-            else alert("Vui lòng điền đầy đủ thông tin !")
+            else{
+                $('#error').addClass("display_block");
+            }
         }
         else {
-            alert('Please enter')
+            $('#error').addClass("display_block");
 
         }
 
@@ -197,6 +203,9 @@ $(document).ready(function () {
 $(document).ready(function () {
     $('.modal-content .fa-xmark').click(function () {
         $('.modal').removeClass("display_block");
+    })
+    $('.error_container .btn_confirm').click(function () {
+        $('#error').removeClass("display_block");
     })
 })
 var indext_of = 0;
@@ -281,3 +290,84 @@ Validator({
         Validator.isrequired("#yourAddress"),
     ]
 })
+
+
+/* --------------cart ------------ */
+const btn_cart= document.querySelectorAll('#menu .btn')
+
+btn_cart.forEach(function(btn,index) {
+
+    btn.addEventListener("click",function(event){
+        var btn_item=event.target;
+        var product = btn_item.parentElement;
+        var product_img = product.querySelector('img').src;
+        var product_name =product.querySelector('h3').innerText;
+        var product_price =product.querySelector('.price').innerText;
+        //
+        addCart(product_price,product_name,product_img)
+    })
+
+})
+function addCart(product_price,product_name,product_img)
+{
+    var addtr= document.createElement('tr')
+    var cart_item = document.querySelectorAll('tbody tr')
+    for(var i=0; i<cart_item.length; i++){
+        var product_name_inCart = document.querySelectorAll('.Name_product_itemInCart')
+       if(product_name_inCart[i].innerText == product_name )
+       {
+           alert('product have your cart !');
+           return;
+       }
+    }
+    
+    var trcontent = '<tr><td style="display: flex ; align-items: center"><img style="width: 70px;"src="'+product_img+'" alt=""><span class="Name_product_itemInCart">'+product_name+'</span></td><td><p><span class="price_product_itemInCart">'+product_price+'</span><sup>đ</sup></p></td><td><input style="width: 30px;outline: none;" type="number" value="1" min="1"></td><td style="cursor: pointer;"><span class="btn_delete_itemInCart">delete</span></td></tr>'
+    addtr.innerHTML =trcontent
+    var cartTable=document.querySelector('tbody')
+    //console.log(cartTable);
+    //append() thêm biến addtr vào tbody
+    cartTable.append(addtr)
+    carttotal();
+    deleteCart();
+}
+
+//-------total
+function carttotal() {
+    var cart_item = document.querySelectorAll('tbody tr')
+    var total_sum =0;
+    for(var i=0; i<cart_item.length; i++) {
+        var inputvalue = cart_item[i].querySelector('input').value;
+        var productPrice = cart_item[i].querySelector('.price_product_itemInCart').innerText;
+       total_i = inputvalue*productPrice;
+       total_sum = total_sum + total_i;
+        
+    }
+
+    var car_total_sum =document.querySelector('.price_total span');
+    car_total_sum.innerText=total_sum;
+    inputchange()
+}
+//-------delete
+
+function deleteCart(){
+    var cart_item = document.querySelectorAll('tbody tr')
+    for(var i=0; i<cart_item.length; i++){
+        var product_delete_inCart = document.querySelectorAll('.btn_delete_itemInCart')
+        product_delete_inCart[i].addEventListener('click', function(event){
+            var cart_delete = event.target
+            var cart_item_delete = cart_delete.parentElement.parentElement
+            cart_item_delete.remove();
+            carttotal();
+        })
+    }
+}
+
+function inputchange(){
+    var cart_item = document.querySelectorAll('tbody tr')
+    for(var i=0; i<cart_item.length; i++){
+        var product_input_inCart = cart_item[i].querySelector('input')
+        product_input_inCart.addEventListener('change', function(){
+            carttotal();
+        })
+    }
+}
